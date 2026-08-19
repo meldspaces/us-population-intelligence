@@ -1,23 +1,42 @@
 {
-  "source": "NHIS 2023 - Medication for depression",
+  "source": "CDC/NCHS National Health Interview Survey 2023",
+  "source_url": "https://www.cdc.gov/nchs/products/databriefs/db528.htm",
+  "source_url_tables": "https://www.ncbi.nlm.nih.gov/books/NBK617971/",
+  "metric": "Percentage of adults age 18+ who took prescription medication for depression",
   "overall": 11.4,
   "by_sex": {
     "women": 15.3,
     "men": 7.4
   },
   "by_age_generation": [
-    {"age_group": "18-44", "generations": ["Gen Z (18-29)", "Millennials (30-45)"], "pct": 10.7},
-    {"age_group": "45-64", "generations": ["Older Millennials", "Gen X (46-61)", "Younger Boomers"], "pct": 12.1},
-    {"age_group": "65-74", "generations": ["Baby Boomers"], "pct": 12.4},
-    {"age_group": "75+", "generations": ["Older Boomers", "Silent Generation"], "pct": 11.3}
+    {
+      "age_group": "18-44",
+      "generations": ["Gen Z (adults 18-29)", "Millennials (30-45)"],
+      "pct": 10.7
+    },
+    {
+      "age_group": "45-64",
+      "generations": ["Older Millennials", "Gen X (46-61)", "Younger Boomers"],
+      "pct": 12.1
+    },
+    {
+      "age_group": "65-74",
+      "generations": ["Baby Boomers"],
+      "pct": 12.4
+    },
+    {
+      "age_group": "75+",
+      "generations": ["Older Boomers", "Silent Generation"],
+      "pct": 11.3
+    }
   ],
   "by_race": {
-    "white_nh": 14.3,
-    "other_multiple_nh": 14.2,
-    "black_nh": 7.7,
-    "aian_nh": 6.9,
+    "white_non_hispanic": 14.3,
+    "other_multiple_races_non_hispanic": 14.2,
+    "black_non_hispanic": 7.7,
+    "american_indian_alaska_native_non_hispanic": 6.9,
     "hispanic": 6.7,
-    "asian_nh": 3.4
+    "asian_non_hispanic": 3.4
   },
   "by_region": {
     "midwest": 14.2,
@@ -25,10 +44,11 @@
     "south": 11.0,
     "west": 9.9
   },
-  "urbanization": {
-    "large_central_metro": 9.5,
-    "large_fringe": 10.7,
-    "medium_small_metro": 13.1,
-    "nonmetro": 13.5
-  }
+  "by_urbanization": {
+    "large_central_metropolitan": 9.5,
+    "large_fringe_metropolitan": 10.7,
+    "medium_and_small_metropolitan": 13.1,
+    "nonmetropolitan": 13.5
+  },
+  "notes": "Aggregate statistics only. SSRIs are the majority of antidepressant prescriptions but exact SSRI share not stratified in this source."
 }
