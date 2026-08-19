@@ -1,47 +1,38 @@
-# Grok Build Prompt – US Population Intelligence (Heat-Map Ready)
+# Grok Build Prompt – US / Global Population Intelligence (Hierarchical + Heat-Map)
 
-Build a modern, queryable web application + API for the US Population Intelligence dataset, with **primary emphasis on an interactive heat map / choropleth of the United States**.
+Build a modern, queryable web application + API on top of the hierarchical PostGIS database.
 
-## Core Requirements
+## Geography Hierarchy (required)
+Country → State/Province → City → Neighborhood
 
-### Backend
-- Postgres + **PostGIS** (required for spatial queries and heat maps).
-- Schema: `schema/postgres_postgis.sql`
-- Load all JSON from `/data` via ETL scripts (Python preferred: pandas + psycopg2 or SQLAlchemy + geoalchemy2).
+Schema is already designed for this hierarchy and for future international expansion.
+
+## Primary Visualization Goal
+Interactive **United States heat map / choropleth** that can zoom from national → state → city (and later neighborhood when data exists).
+
+- State level: choropleth colored by current antidepressant rate (Perlis 2026)
+- City level: point / bubble map sized & colored by proxy medication midpoint rate
+- Adaptive: when the user drills into a city that has neighborhood polygons, switch to that layer
+
+## Technical Requirements
+- Backend: Postgres + **latest PostGIS** (use spatial indexes, ST_Within, ST_DWithin, <-> KNN, ST_AsGeoJSON, geography type where distance matters)
+- Load via the ETL described in `/etl`
 - Expose:
-  - Raw SQL endpoint (parameterized, read-only)
-  - REST API for filtered queries (city, state, generation, sex, race, rate range)
-  - Spatial endpoints that return GeoJSON FeatureCollections ready for maps
+  - Parameterized SQL (read-only)
+  - REST + GeoJSON endpoints for each hierarchy level
+  - Natural-language or structured filters that translate to spatial + attribute queries
+- Frontend: MapLibre GL JS (or equivalent) + adaptive Chart.js / Observable Plot / D3 charts
+- Dark/light mode, high visibility, mobile responsive
 
-### Heat Map / Choropleth (Priority Feature)
-Two complementary views:
-1. **City point heat map / bubble map**
-   - Points from `cities.geom` (SRID 4326)
-   - Color and/or size by midpoint of `proxy_pct_low` / `proxy_pct_high` or a user-selected rate field
-   - Tooltips: city, state, population, proxy range, notes, sources
-2. **State-level choropleth**
-   - Use `state_rates` table joined to public US state polygons (or pre-load a simple state GeoJSON)
-   - Color scale by current antidepressant rate (Perlis 2026)
+## Data Rules (non-negotiable)
+- Aggregate public statistics only
+- Every rate and population figure must display its source link
+- Clearly label all medication figures as **proxies** (SSRIs are the majority class but not isolated)
 
-Use a modern mapping library (MapLibre GL JS, Leaflet + heat plugins, or Observable Plot + D3 geo) that supports both point density and choropleth. Adaptive: if the query returns geometry, default to map; otherwise fall back to ranked bars / faceted charts.
+## Start Here
+1. Run the hierarchical schema
+2. Implement ETL that populates countries (US), states_provinces (with rates + optional polygons), cities (with points + rates)
+3. Build the map page that defaults to the US state choropleth and city bubbles, with drill-down
+4. Add filters for generation, sex, race that re-query and update both map and charts
 
-### Adaptive Charts
-- Hyper-modern JS (Chart.js, Observable Plot, D3, or ECharts)
-- Auto-select visualization based on result shape:
-  - Generation / age → grouped or stacked bars
-  - Sex or race → horizontal bars or pie
-  - State or city ranking → sorted bars or map
-  - Intersections → heatmaps or small-multiples
-- Dark/light mode, high contrast, responsive
-
-### Data Notes (must surface in UI)
-- All figures are **aggregate public statistics only**. No individual data.
-- Rates are **proxies** (medication for depression / current antidepressant use). SSRIs form the majority of antidepressant prescriptions but are not isolated in these surveys.
-- Full source links must be displayed (see `data/SOURCES.md` and metadata fields in every JSON).
-
-### Suggested Start
-1. Implement ETL that populates `cities` with `ST_SetSRID(ST_MakePoint(lon, lat), 4326)` and loads state rates.
-2. Create a sample dashboard page with the US heat map as the hero view.
-3. Add filter controls that re-query and re-render the map or charts adaptively.
-
-Primary goal: a beautiful, queryable intelligence layer that lets a user immediately see geographic patterns in antidepressant/medication-for-depression prevalence across the top US cities and states.
+This is the foundation for a scalable population-intelligence layer that begins with US antidepressant/medication proxies and can expand globally.
