@@ -1,0 +1,10 @@
+{
+  "as_of": 2026,
+  "definitions": [
+    {"name": "Gen Z", "birth_years": "1997-2012", "ages": "14-29", "adult_ages": "18-29"},
+    {"name": "Millennials", "birth_years": "1981-1996", "ages": "30-45"},
+    {"name": "Gen X", "birth_years": "1965-1980", "ages": "46-61"},
+    {"name": "Baby Boomers", "birth_years": "1946-1964", "ages": "62-80"},
+    {"name": "Silent Generation", "birth_years": "1928-1945", "ages": "81-98"}
+  ]
+}

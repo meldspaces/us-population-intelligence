@@ -1,0 +1,22 @@
+[
+  {"rank": 1, "city": "New York", "state": "NY", "population_2025": 8584629, "proxy_pct_low": 10, "proxy_pct_high": 12, "notes": "Lower; Pulse/Nielsen relatively low"},
+  {"rank": 2, "city": "Los Angeles", "state": "CA", "population_2025": 3869089, "proxy_pct_low": 9, "proxy_pct_high": 13, "notes": "CA 9.5%; Pulse ~13% any MH Rx"},
+  {"rank": 3, "city": "Chicago", "state": "IL", "population_2025": 2731585, "proxy_pct_low": 11, "proxy_pct_high": 13, "notes": "IL ~12%"},
+  {"rank": 4, "city": "Houston", "state": "TX", "population_2025": 2397315, "proxy_pct_low": 10, "proxy_pct_high": 13, "notes": "Sunbelt/TX lower"},
+  {"rank": 5, "city": "Phoenix", "state": "AZ", "population_2025": 1665481, "proxy_pct_low": 13, "proxy_pct_high": 17, "notes": "AZ 13.5%; Pulse ~17%"},
+  {"rank": 6, "city": "Philadelphia", "state": "PA", "population_2025": 1574281, "proxy_pct_low": 13, "proxy_pct_high": 16, "notes": "Higher Northeast"},
+  {"rank": 7, "city": "San Antonio", "state": "TX", "population_2025": 1548422, "proxy_pct_low": 10, "proxy_pct_high": 13, "notes": "TX Sunbelt"},
+  {"rank": 8, "city": "San Diego", "state": "CA", "population_2025": 1406106, "proxy_pct_low": 9, "proxy_pct_high": 12, "notes": "CA 9.5%"},
+  {"rank": 9, "city": "Dallas", "state": "TX", "population_2025": 1329491, "proxy_pct_low": 10, "proxy_pct_high": 13, "notes": "TX"},
+  {"rank": 10, "city": "Fort Worth", "state": "TX", "population_2025": 1028117, "proxy_pct_low": 10, "proxy_pct_high": 13, "notes": "TX"},
+  {"rank": 11, "city": "Jacksonville", "state": "FL", "population_2025": 1017689, "proxy_pct_low": 9, "proxy_pct_high": 12, "notes": "FL 9.9%"},
+  {"rank": 12, "city": "Austin", "state": "TX", "population_2025": 1002632, "proxy_pct_low": 10, "proxy_pct_high": 13, "notes": "TX"},
+  {"rank": 13, "city": "San Jose", "state": "CA", "population_2025": 989814, "proxy_pct_low": 9, "proxy_pct_high": 12, "notes": "CA"},
+  {"rank": 14, "city": "Charlotte", "state": "NC", "population_2025": 964784, "proxy_pct_low": 11, "proxy_pct_high": 14, "notes": "South"},
+  {"rank": 15, "city": "Columbus", "state": "OH", "population_2025": 938396, "proxy_pct_low": 13, "proxy_pct_high": 16, "notes": "Midwest higher"},
+  {"rank": 16, "city": "Indianapolis", "state": "IN", "population_2025": 910638, "proxy_pct_low": 16, "proxy_pct_high": 19, "notes": "IN 18.1%"},
+  {"rank": 17, "city": "San Francisco", "state": "CA", "population_2025": 826079, "proxy_pct_low": 12, "proxy_pct_high": 16, "notes": "CA but Pulse ~16%"},
+  {"rank": 18, "city": "Louisville", "state": "KY", "population_2025": 795222, "proxy_pct_low": 20, "proxy_pct_high": 24, "notes": "KY 24.5% high"},
+  {"rank": 19, "city": "Seattle", "state": "WA", "population_2025": 784777, "proxy_pct_low": 18, "proxy_pct_high": 21, "notes": "Highest major metro Pulse ~21%"},
+  {"rank": 20, "city": "Nashville", "state": "TN", "population_2025": 745904, "proxy_pct_low": 13, "proxy_pct_high": 16, "notes": "South"}
+]
