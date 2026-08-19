@@ -1,0 +1,51 @@
+{
+  "metric": "Current (and lifetime) antidepressant use among adults",
+  "primary_source": {
+    "name": "Perlis RH et al. Antidepressant use among American adults in a 50-state survey",
+    "journal": "BMJ Mental Health 2026;29:e302287",
+    "url": "https://mentalhealth.bmj.com/content/29/1/e302287",
+    "supplemental": "https://mentalhealth.bmj.com/content/ebmental/29/1/e302287/DC1/embed/inline-supplementary-material-1.pdf",
+    "note": "Overall current antidepressant use 16.6%. State rates extracted from Supplemental Table 3."
+  },
+  "supporting_sources": [
+    {
+      "name": "NHIS 2023 medication for depression (regional)",
+      "url": "https://www.cdc.gov/nchs/products/databriefs/db528.htm"
+    },
+    {
+      "name": "Household Pulse Survey (largest MSAs, medication for mental health)",
+      "url": "https://www.cdc.gov/nchs/covid19/pulse/mental-health-care.htm",
+      "example": "Seattle metro ~21% (highest among largest MSAs in 2021 waves)"
+    }
+  ],
+  "states": [
+    {"state": "AL", "current_pct": 17.9, "lifetime_pct": 38.8},
+    {"state": "AK", "current_pct": 13.9, "lifetime_pct": 34.9},
+    {"state": "AZ", "current_pct": 13.5, "lifetime_pct": 29.4},
+    {"state": "AR", "current_pct": 18.6, "lifetime_pct": 39.6},
+    {"state": "CA", "current_pct": 9.5,  "lifetime_pct": 21.6},
+    {"state": "CO", "current_pct": 14.8, "lifetime_pct": 34.9},
+    {"state": "CT", "current_pct": 16.2, "lifetime_pct": 31.4},
+    {"state": "DE", "current_pct": 18.9, "lifetime_pct": 36.9},
+    {"state": "DC", "current_pct": 16.8, "lifetime_pct": 32.7},
+    {"state": "FL", "current_pct": 9.9,  "lifetime_pct": 22.9},
+    {"state": "GA", "current_pct": 12.3, "lifetime_pct": 27.4},
+    {"state": "HI", "current_pct": 7.9,  "lifetime_pct": 21.0},
+    {"state": "ID", "current_pct": 23.7, "lifetime_pct": 43.8},
+    {"state": "IL", "current_pct": 12.0, "lifetime_pct": 23.7},
+    {"state": "IN", "current_pct": 18.1, "lifetime_pct": 36.3},
+    {"state": "IA", "current_pct": 23.6, "lifetime_pct": 43.4},
+    {"state": "KS", "current_pct": 16.6, "lifetime_pct": 38.8},
+    {"state": "KY", "current_pct": 24.5, "lifetime_pct": 41.9},
+    {"state": "LA", "current_pct": 17.0, "lifetime_pct": 32.7},
+    {"state": "ME", "current_pct": 22.9, "lifetime_pct": 46.2},
+    {"state": "MD", "current_pct": 14.6, "lifetime_pct": 26.1},
+    {"state": "MA", "current_pct": 15.3, "lifetime_pct": 33.7},
+    {"state": "MI", "current_pct": 16.0, "lifetime_pct": 31.5}
+  ],
+  "notes": [
+    "Partial list from Perlis Supplemental Table 3 (full table available in the PDF). Higher rates concentrated in Appalachia / Midwest / New England; lower in California, Florida, Hawaii.",
+    "These are self-reported current use rates. SSRIs are the dominant antidepressant class but not isolated here.",
+    "Aggregate public data only."
+  ]
+}
