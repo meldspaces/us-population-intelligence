@@ -1,0 +1,46 @@
+{
+  "name": "us-population-intelligence",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Hierarchical US population and medication-proxy intelligence index with a map-first query UI.",
+  "scripts": {
+    "dev": "concurrently -k \"tsx watch server/index.ts\" \"vite\"",
+    "build": "tsc -p tsconfig.server.json && vite build",
+    "start": "node dist/index.js",
+    "etl": "tsx server/etl.ts",
+    "typecheck": "tsc -p tsconfig.server.json --noEmit && tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "echarts": "^5.6.0",
+    "echarts-for-react": "^3.0.2",
+    "express": "^5.1.0",
+    "maplibre-gl": "^5.6.0",
+    "pg": "^8.16.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/geojson": "7946.0.16",
+    "@types/node": "^22.15.21",
+    "@types/pg": "^8.15.4",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.2",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "esbuild@0.25.12": true
+  }
+}

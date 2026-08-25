@@ -1,11 +1,16 @@
 {
   "metric": "Current (and lifetime) antidepressant use among adults",
+  "year": 2025,
+  "published": 2026,
+  "national_current_pct": 16.6,
+  "national_lifetime_pct": 33.9,
   "primary_source": {
     "name": "Perlis RH et al. Antidepressant use among American adults in a 50-state survey",
     "journal": "BMJ Mental Health 2026;29:e302287",
     "url": "https://mentalhealth.bmj.com/content/29/1/e302287",
+    "pmc": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12829365/",
     "supplemental": "https://mentalhealth.bmj.com/content/ebmental/29/1/e302287/DC1/embed/inline-supplementary-material-1.pdf",
-    "note": "Overall current antidepressant use 16.6%. State rates extracted from Supplemental Table 3."
+    "note": "Current and lifetime antidepressant use from Supplemental Table 3. National current use 16.6%. Self-reported; SSRIs are the majority class but not isolated."
   },
   "supporting_sources": [
     {
@@ -14,38 +19,422 @@
     },
     {
       "name": "Household Pulse Survey (largest MSAs, medication for mental health)",
-      "url": "https://www.cdc.gov/nchs/covid19/pulse/mental-health-care.htm",
-      "example": "Seattle metro ~21% (highest among largest MSAs in 2021 waves)"
+      "url": "https://www.cdc.gov/nchs/covid19/pulse/mental-health-care.htm"
     }
   ],
   "states": [
-    {"state": "AL", "current_pct": 17.9, "lifetime_pct": 38.8},
-    {"state": "AK", "current_pct": 13.9, "lifetime_pct": 34.9},
-    {"state": "AZ", "current_pct": 13.5, "lifetime_pct": 29.4},
-    {"state": "AR", "current_pct": 18.6, "lifetime_pct": 39.6},
-    {"state": "CA", "current_pct": 9.5,  "lifetime_pct": 21.6},
-    {"state": "CO", "current_pct": 14.8, "lifetime_pct": 34.9},
-    {"state": "CT", "current_pct": 16.2, "lifetime_pct": 31.4},
-    {"state": "DE", "current_pct": 18.9, "lifetime_pct": 36.9},
-    {"state": "DC", "current_pct": 16.8, "lifetime_pct": 32.7},
-    {"state": "FL", "current_pct": 9.9,  "lifetime_pct": 22.9},
-    {"state": "GA", "current_pct": 12.3, "lifetime_pct": 27.4},
-    {"state": "HI", "current_pct": 7.9,  "lifetime_pct": 21.0},
-    {"state": "ID", "current_pct": 23.7, "lifetime_pct": 43.8},
-    {"state": "IL", "current_pct": 12.0, "lifetime_pct": 23.7},
-    {"state": "IN", "current_pct": 18.1, "lifetime_pct": 36.3},
-    {"state": "IA", "current_pct": 23.6, "lifetime_pct": 43.4},
-    {"state": "KS", "current_pct": 16.6, "lifetime_pct": 38.8},
-    {"state": "KY", "current_pct": 24.5, "lifetime_pct": 41.9},
-    {"state": "LA", "current_pct": 17.0, "lifetime_pct": 32.7},
-    {"state": "ME", "current_pct": 22.9, "lifetime_pct": 46.2},
-    {"state": "MD", "current_pct": 14.6, "lifetime_pct": 26.1},
-    {"state": "MA", "current_pct": 15.3, "lifetime_pct": 33.7},
-    {"state": "MI", "current_pct": 16.0, "lifetime_pct": 31.5}
+    {
+      "state": "AL",
+      "name": "Alabama",
+      "fips": "01",
+      "census_region": "south",
+      "current_pct": 17.9,
+      "lifetime_pct": 38.8
+    },
+    {
+      "state": "AK",
+      "name": "Alaska",
+      "fips": "02",
+      "census_region": "west",
+      "current_pct": 13.9,
+      "lifetime_pct": 34.9
+    },
+    {
+      "state": "AZ",
+      "name": "Arizona",
+      "fips": "04",
+      "census_region": "west",
+      "current_pct": 13.5,
+      "lifetime_pct": 29.4
+    },
+    {
+      "state": "AR",
+      "name": "Arkansas",
+      "fips": "05",
+      "census_region": "south",
+      "current_pct": 18.6,
+      "lifetime_pct": 39.6
+    },
+    {
+      "state": "CA",
+      "name": "California",
+      "fips": "06",
+      "census_region": "west",
+      "current_pct": 9.5,
+      "lifetime_pct": 21.6
+    },
+    {
+      "state": "CO",
+      "name": "Colorado",
+      "fips": "08",
+      "census_region": "west",
+      "current_pct": 14.8,
+      "lifetime_pct": 34.9
+    },
+    {
+      "state": "CT",
+      "name": "Connecticut",
+      "fips": "09",
+      "census_region": "northeast",
+      "current_pct": 16.2,
+      "lifetime_pct": 31.4
+    },
+    {
+      "state": "DE",
+      "name": "Delaware",
+      "fips": "10",
+      "census_region": "south",
+      "current_pct": 18.9,
+      "lifetime_pct": 36.9
+    },
+    {
+      "state": "DC",
+      "name": "District of Columbia",
+      "fips": "11",
+      "census_region": "south",
+      "current_pct": 16.8,
+      "lifetime_pct": 32.7
+    },
+    {
+      "state": "FL",
+      "name": "Florida",
+      "fips": "12",
+      "census_region": "south",
+      "current_pct": 9.9,
+      "lifetime_pct": 22.9
+    },
+    {
+      "state": "GA",
+      "name": "Georgia",
+      "fips": "13",
+      "census_region": "south",
+      "current_pct": 12.3,
+      "lifetime_pct": 27.4
+    },
+    {
+      "state": "HI",
+      "name": "Hawaii",
+      "fips": "15",
+      "census_region": "west",
+      "current_pct": 7.9,
+      "lifetime_pct": 21.0
+    },
+    {
+      "state": "ID",
+      "name": "Idaho",
+      "fips": "16",
+      "census_region": "west",
+      "current_pct": 23.7,
+      "lifetime_pct": 43.8
+    },
+    {
+      "state": "IL",
+      "name": "Illinois",
+      "fips": "17",
+      "census_region": "midwest",
+      "current_pct": 12.0,
+      "lifetime_pct": 23.7
+    },
+    {
+      "state": "IN",
+      "name": "Indiana",
+      "fips": "18",
+      "census_region": "midwest",
+      "current_pct": 18.1,
+      "lifetime_pct": 36.3
+    },
+    {
+      "state": "IA",
+      "name": "Iowa",
+      "fips": "19",
+      "census_region": "midwest",
+      "current_pct": 23.6,
+      "lifetime_pct": 43.4
+    },
+    {
+      "state": "KS",
+      "name": "Kansas",
+      "fips": "20",
+      "census_region": "midwest",
+      "current_pct": 16.6,
+      "lifetime_pct": 38.8
+    },
+    {
+      "state": "KY",
+      "name": "Kentucky",
+      "fips": "21",
+      "census_region": "south",
+      "current_pct": 24.5,
+      "lifetime_pct": 41.9
+    },
+    {
+      "state": "LA",
+      "name": "Louisiana",
+      "fips": "22",
+      "census_region": "south",
+      "current_pct": 17.0,
+      "lifetime_pct": 32.7
+    },
+    {
+      "state": "ME",
+      "name": "Maine",
+      "fips": "23",
+      "census_region": "northeast",
+      "current_pct": 22.9,
+      "lifetime_pct": 46.2
+    },
+    {
+      "state": "MD",
+      "name": "Maryland",
+      "fips": "24",
+      "census_region": "south",
+      "current_pct": 14.6,
+      "lifetime_pct": 26.1
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "fips": "25",
+      "census_region": "northeast",
+      "current_pct": 15.3,
+      "lifetime_pct": 33.7
+    },
+    {
+      "state": "MI",
+      "name": "Michigan",
+      "fips": "26",
+      "census_region": "midwest",
+      "current_pct": 16.0,
+      "lifetime_pct": 31.5
+    },
+    {
+      "state": "MN",
+      "name": "Minnesota",
+      "fips": "27",
+      "census_region": "midwest",
+      "current_pct": 14.7,
+      "lifetime_pct": 33.7
+    },
+    {
+      "state": "MS",
+      "name": "Mississippi",
+      "fips": "28",
+      "census_region": "south",
+      "current_pct": 17.8,
+      "lifetime_pct": 37.6
+    },
+    {
+      "state": "MO",
+      "name": "Missouri",
+      "fips": "29",
+      "census_region": "midwest",
+      "current_pct": 21.5,
+      "lifetime_pct": 37.5
+    },
+    {
+      "state": "MT",
+      "name": "Montana",
+      "fips": "30",
+      "census_region": "west",
+      "current_pct": 17.9,
+      "lifetime_pct": 50.0
+    },
+    {
+      "state": "NE",
+      "name": "Nebraska",
+      "fips": "31",
+      "census_region": "midwest",
+      "current_pct": 23.1,
+      "lifetime_pct": 40.9
+    },
+    {
+      "state": "NV",
+      "name": "Nevada",
+      "fips": "32",
+      "census_region": "west",
+      "current_pct": 11.5,
+      "lifetime_pct": 23.9
+    },
+    {
+      "state": "NH",
+      "name": "New Hampshire",
+      "fips": "33",
+      "census_region": "northeast",
+      "current_pct": 17.6,
+      "lifetime_pct": 42.1
+    },
+    {
+      "state": "NJ",
+      "name": "New Jersey",
+      "fips": "34",
+      "census_region": "northeast",
+      "current_pct": 12.1,
+      "lifetime_pct": 22.7
+    },
+    {
+      "state": "NM",
+      "name": "New Mexico",
+      "fips": "35",
+      "census_region": "west",
+      "current_pct": 17.3,
+      "lifetime_pct": 36.9
+    },
+    {
+      "state": "NY",
+      "name": "New York",
+      "fips": "36",
+      "census_region": "northeast",
+      "current_pct": 10.9,
+      "lifetime_pct": 21.3
+    },
+    {
+      "state": "NC",
+      "name": "North Carolina",
+      "fips": "37",
+      "census_region": "south",
+      "current_pct": 14.5,
+      "lifetime_pct": 28.4
+    },
+    {
+      "state": "ND",
+      "name": "North Dakota",
+      "fips": "38",
+      "census_region": "midwest",
+      "current_pct": 19.8,
+      "lifetime_pct": 40.2
+    },
+    {
+      "state": "OH",
+      "name": "Ohio",
+      "fips": "39",
+      "census_region": "midwest",
+      "current_pct": 17.2,
+      "lifetime_pct": 32.7
+    },
+    {
+      "state": "OK",
+      "name": "Oklahoma",
+      "fips": "40",
+      "census_region": "south",
+      "current_pct": 16.4,
+      "lifetime_pct": 33.4
+    },
+    {
+      "state": "OR",
+      "name": "Oregon",
+      "fips": "41",
+      "census_region": "west",
+      "current_pct": 18.2,
+      "lifetime_pct": 38.0
+    },
+    {
+      "state": "PA",
+      "name": "Pennsylvania",
+      "fips": "42",
+      "census_region": "northeast",
+      "current_pct": 15.1,
+      "lifetime_pct": 29.9
+    },
+    {
+      "state": "RI",
+      "name": "Rhode Island",
+      "fips": "44",
+      "census_region": "northeast",
+      "current_pct": 21.4,
+      "lifetime_pct": 37.9
+    },
+    {
+      "state": "SC",
+      "name": "South Carolina",
+      "fips": "45",
+      "census_region": "south",
+      "current_pct": 16.3,
+      "lifetime_pct": 32.4
+    },
+    {
+      "state": "SD",
+      "name": "South Dakota",
+      "fips": "46",
+      "census_region": "midwest",
+      "current_pct": 17.6,
+      "lifetime_pct": 37.9
+    },
+    {
+      "state": "TN",
+      "name": "Tennessee",
+      "fips": "47",
+      "census_region": "south",
+      "current_pct": 18.0,
+      "lifetime_pct": 34.2
+    },
+    {
+      "state": "TX",
+      "name": "Texas",
+      "fips": "48",
+      "census_region": "south",
+      "current_pct": 9.8,
+      "lifetime_pct": 26.4
+    },
+    {
+      "state": "UT",
+      "name": "Utah",
+      "fips": "49",
+      "census_region": "west",
+      "current_pct": 22.0,
+      "lifetime_pct": 39.5
+    },
+    {
+      "state": "VT",
+      "name": "Vermont",
+      "fips": "50",
+      "census_region": "northeast",
+      "current_pct": 26.1,
+      "lifetime_pct": 46.0
+    },
+    {
+      "state": "VA",
+      "name": "Virginia",
+      "fips": "51",
+      "census_region": "south",
+      "current_pct": 18.2,
+      "lifetime_pct": 32.4
+    },
+    {
+      "state": "WA",
+      "name": "Washington",
+      "fips": "53",
+      "census_region": "west",
+      "current_pct": 13.6,
+      "lifetime_pct": 30.6
+    },
+    {
+      "state": "WV",
+      "name": "West Virginia",
+      "fips": "54",
+      "census_region": "south",
+      "current_pct": 26.0,
+      "lifetime_pct": 50.2
+    },
+    {
+      "state": "WI",
+      "name": "Wisconsin",
+      "fips": "55",
+      "census_region": "midwest",
+      "current_pct": 19.4,
+      "lifetime_pct": 33.6
+    },
+    {
+      "state": "WY",
+      "name": "Wyoming",
+      "fips": "56",
+      "census_region": "west",
+      "current_pct": 18.4,
+      "lifetime_pct": 43.0
+    }
   ],
   "notes": [
-    "Partial list from Perlis Supplemental Table 3 (full table available in the PDF). Higher rates concentrated in Appalachia / Midwest / New England; lower in California, Florida, Hawaii.",
+    "Full Supplemental Table 3 from Perlis et al. 2026. Higher rates concentrated in Appalachia / Midwest / New England; lower in California, Florida, Hawaii, Texas, New York.",
     "These are self-reported current use rates. SSRIs are the dominant antidepressant class but not isolated here.",
-    "Aggregate public data only."
+    "Aggregate public data only. No individual-level records."
   ]
 }

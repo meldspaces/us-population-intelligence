@@ -12,9 +12,11 @@
 - psycopg2 or SQLAlchemy + geoalchemy2
 - shapely / pyproj
 
-## Suggested Load Order
+Implemented in `server/etl.ts` (runs on API boot; also `npm run etl`).
+
+Load order:
 1. countries (start with United States; later Natural Earth / geoBoundaries)
-2. states_provinces (US states + Perlis rates + optional TIGER / geoBoundaries polygons)
+2. states_provinces (US states + Perlis rates + Census Cartographic Boundary 2025 5m polygons)
 3. cities (top 50/100 + lat/lon from Census Gazetteer or public centroids + proxy rates)
 4. neighborhoods (optional / placeholder – Census tracts or city open-data neighborhoods when available)
 5. demographics (NHIS, generations, etc.)

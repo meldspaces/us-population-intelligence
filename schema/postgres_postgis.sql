@@ -7,13 +7,14 @@
 -- =============================================================================
 
 CREATE EXTENSION IF NOT EXISTS postgis;
-CREATE EXTENSION IF NOT EXISTS postgis_topology;   -- optional advanced topology
--- CREATE EXTENSION IF NOT EXISTS ltree;          -- optional for path queries
+-- Topology is optional and not required for the choropleth / bubble map.
+-- CREATE EXTENSION IF NOT EXISTS postgis_topology;
+-- CREATE EXTENSION IF NOT EXISTS ltree;
 
 -- ---------------------------------------------------------------------------
 -- 1. COUNTRY
 -- ---------------------------------------------------------------------------
-CREATE TABLE countries (
+CREATE TABLE IF NOT EXISTS countries (
   id              SERIAL PRIMARY KEY,
   iso2            CHAR(2) UNIQUE NOT NULL,          -- US, CA, GB ...
   iso3            CHAR(3) UNIQUE,
@@ -29,13 +30,13 @@ CREATE TABLE countries (
   updated_at      TIMESTAMPTZ DEFAULT now()
 );
 
-CREATE INDEX idx_countries_geom ON countries USING GIST (geom);
-CREATE INDEX idx_countries_iso2 ON countries(iso2);
+CREATE INDEX IF NOT EXISTS idx_countries_geom ON countries USING GIST (geom);
+CREATE INDEX IF NOT EXISTS idx_countries_iso2 ON countries(iso2);
 
 -- ---------------------------------------------------------------------------
 -- 2. STATE / PROVINCE (ADM1)
 -- ---------------------------------------------------------------------------
-CREATE TABLE states_provinces (
+CREATE TABLE IF NOT EXISTS states_provinces (
   id              SERIAL PRIMARY KEY,
   country_id      INT NOT NULL REFERENCES countries(id) ON DELETE CASCADE,
   code            TEXT NOT NULL,                    -- US: CA, NY, TX ; CA: ON, QC ; etc.
@@ -58,15 +59,15 @@ CREATE TABLE states_provinces (
   UNIQUE (country_id, code)
 );
 
-CREATE INDEX idx_states_country ON states_provinces(country_id);
-CREATE INDEX idx_states_code    ON states_provinces(code);
-CREATE INDEX idx_states_geom    ON states_provinces USING GIST (geom);
-CREATE INDEX idx_states_rate    ON states_provinces(current_antidepressant_pct);
+CREATE INDEX IF NOT EXISTS idx_states_country ON states_provinces(country_id);
+CREATE INDEX IF NOT EXISTS idx_states_code    ON states_provinces(code);
+CREATE INDEX IF NOT EXISTS idx_states_geom    ON states_provinces USING GIST (geom);
+CREATE INDEX IF NOT EXISTS idx_states_rate    ON states_provinces(current_antidepressant_pct);
 
 -- ---------------------------------------------------------------------------
 -- 3. CITY / PLACE (ADM2-ish or incorporated place)
 -- ---------------------------------------------------------------------------
-CREATE TABLE cities (
+CREATE TABLE IF NOT EXISTS cities (
   id              SERIAL PRIMARY KEY,
   country_id      INT NOT NULL REFERENCES countries(id),
   state_id        INT REFERENCES states_provinces(id),
@@ -94,21 +95,22 @@ CREATE TABLE cities (
   updated_at      TIMESTAMPTZ DEFAULT now()
 );
 
-CREATE INDEX idx_cities_country   ON cities(country_id);
-CREATE INDEX idx_cities_state     ON cities(state_id);
-CREATE INDEX idx_cities_statecode ON cities(state_code);
-CREATE INDEX idx_cities_rank      ON cities(rank_national);
-CREATE INDEX idx_cities_pop       ON cities(population DESC NULLS LAST);
-CREATE INDEX idx_cities_geom      ON cities USING GIST (geom);
-CREATE INDEX idx_cities_boundary  ON cities USING GIST (boundary);
-CREATE INDEX idx_cities_rate      ON cities(proxy_midpoint);
+CREATE INDEX IF NOT EXISTS idx_cities_country   ON cities(country_id);
+CREATE INDEX IF NOT EXISTS idx_cities_state     ON cities(state_id);
+CREATE INDEX IF NOT EXISTS idx_cities_statecode ON cities(state_code);
+CREATE INDEX IF NOT EXISTS idx_cities_rank      ON cities(rank_national);
+CREATE INDEX IF NOT EXISTS idx_cities_pop       ON cities(population DESC NULLS LAST);
+CREATE INDEX IF NOT EXISTS idx_cities_geom      ON cities USING GIST (geom);
+CREATE INDEX IF NOT EXISTS idx_cities_boundary  ON cities USING GIST (boundary);
+CREATE INDEX IF NOT EXISTS idx_cities_rate      ON cities(proxy_midpoint);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_cities_name_state ON cities(country_id, name, state_code);
 
 -- ---------------------------------------------------------------------------
 -- 4. NEIGHBORHOOD (or Census Tract / ZCTA proxy)
 --    Public medication rates almost never exist at this level.
 --    Schema supports future data or ACS-derived proxies.
 -- ---------------------------------------------------------------------------
-CREATE TABLE neighborhoods (
+CREATE TABLE IF NOT EXISTS neighborhoods (
   id              SERIAL PRIMARY KEY,
   city_id         INT NOT NULL REFERENCES cities(id) ON DELETE CASCADE,
   name            TEXT NOT NULL,
@@ -127,14 +129,14 @@ CREATE TABLE neighborhoods (
   updated_at      TIMESTAMPTZ DEFAULT now()
 );
 
-CREATE INDEX idx_neigh_city  ON neighborhoods(city_id);
-CREATE INDEX idx_neigh_geom  ON neighborhoods USING GIST (geom);
-CREATE INDEX idx_neigh_type  ON neighborhoods(type);
+CREATE INDEX IF NOT EXISTS idx_neigh_city  ON neighborhoods(city_id);
+CREATE INDEX IF NOT EXISTS idx_neigh_geom  ON neighborhoods USING GIST (geom);
+CREATE INDEX IF NOT EXISTS idx_neigh_type  ON neighborhoods(type);
 
 -- ---------------------------------------------------------------------------
 -- 5. DEMOGRAPHICS (flexible, linked to any geo level if needed later)
 -- ---------------------------------------------------------------------------
-CREATE TABLE demographics (
+CREATE TABLE IF NOT EXISTS demographics (
   id              SERIAL PRIMARY KEY,
   source_name     TEXT NOT NULL,
   source_url      TEXT,
@@ -150,9 +152,9 @@ CREATE TABLE demographics (
   created_at      TIMESTAMPTZ DEFAULT now()
 );
 
-CREATE INDEX idx_demo_category ON demographics(category);
-CREATE INDEX idx_demo_year     ON demographics(year);
-CREATE INDEX idx_demo_metric   ON demographics(metric);
+CREATE INDEX IF NOT EXISTS idx_demo_category ON demographics(category);
+CREATE INDEX IF NOT EXISTS idx_demo_year     ON demographics(year);
+CREATE INDEX IF NOT EXISTS idx_demo_metric   ON demographics(metric);
 
 -- ---------------------------------------------------------------------------
 -- 6. HEAT-MAP / QUERY HELPER VIEWS (PostGIS maximized)
@@ -216,3 +218,20 @@ COMMENT ON TABLE countries IS 'Top-level geography. Prepare for global expansion
 COMMENT ON TABLE states_provinces IS 'ADM1 (US states, Canadian provinces, etc.). Primary choropleth layer for rates.';
 COMMENT ON TABLE cities IS 'Incorporated places / major cities. Primary heat-map point layer for US medication proxies.';
 COMMENT ON TABLE neighborhoods IS 'Neighborhoods, census tracts, or ZCTAs. Medication rates rarely published at this level; schema ready for future aggregate data.';
+
+-- ---------------------------------------------------------------------------
+-- 7. SAVED SEARCHES (named filter combinations or SQL snippets)
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS saved_searches (
+  id          SERIAL PRIMARY KEY,
+  name        TEXT NOT NULL,
+  kind        TEXT NOT NULL CHECK (kind IN ('sql', 'filters')),
+  query       TEXT,
+  filters     JSONB,
+  description TEXT,
+  created_at  TIMESTAMPTZ DEFAULT now(),
+  updated_at  TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_saved_searches_kind ON saved_searches(kind);
+COMMENT ON TABLE saved_searches IS 'User-named SQL snippets and filter combinations for re-run.';

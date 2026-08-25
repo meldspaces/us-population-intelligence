@@ -31,4 +31,10 @@
 6. **Express Scripts – America’s State of Mind Report (2019 data, published 2020)**  
    Historical commercial pharmacy claims for antidepressants by state.
 
+7. **U.S. Census Bureau – Cartographic Boundary Files 2025 (states, 1:5,000,000)**  
+   Official small-scale polygons used for the state choropleth (`cb_2025_us_state_5m`).  
+   https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html  
+   FTP: https://www2.census.gov/geo/tiger/GENZ2025/shp/cb_2025_us_state_5m.zip  
+   Public-domain U.S. government work. See `data/geo/SOURCES.md`.
+
 All medication figures are **proxies** (antidepressant use or medication for depression). Exact city-level SSRI prevalence is not publicly available in standardized form.

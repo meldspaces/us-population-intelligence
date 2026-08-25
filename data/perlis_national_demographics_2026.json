@@ -1,0 +1,25 @@
+{
+  "source": "Perlis RH et al. Antidepressant use among American adults in a 50-state survey. BMJ Mental Health 2026;29:e302287.",
+  "source_url": "https://mentalhealth.bmj.com/content/29/1/e302287",
+  "metric": "current_antidepressant",
+  "year": 2025,
+  "overall": 16.6,
+  "by_sex": {
+    "men": 10.6,
+    "women": null,
+    "tgnb": 38.9
+  },
+  "by_age": [
+    {
+      "age_group": "45-54",
+      "pct": 20.0,
+      "notes": "Highest age band reported in the paper"
+    }
+  ],
+  "by_race": {
+    "white": 19.2,
+    "asian_american": 8.9,
+    "black": 8.2
+  },
+  "notes": "Only rates explicitly reported in the paper body are stored. Female national rate is not published as a single weighted figure in the text. TGNB = transgender and nonbinary as defined by the authors. Aggregate public statistics only."
+}
